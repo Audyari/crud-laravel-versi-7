@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\test;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,10 +25,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // route index baru
 
-Route::get('/test', function () {
-    return view('test', [ 'data' => [
-        'author' => 'Audyari W',
-        'title' => 'Dashboard Test',
-        'content' => 'Selamat Datang'
-    ]]);
-});
+Route::get('/test', 'TestController@index')->name('test.index');    
