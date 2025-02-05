@@ -1,0 +1,109 @@
+1. cara install laravel 7
+
+    composer create-project --prefer-dist laravel/laravel:^7.0 blog
+    cp .env.example .env
+    php artisan key:generate
+
+2. menjalankan server
+    
+    php artisan serve
+
+3. instalasi package laravel
+    
+    composer require laravel/ui:^2.4
+    composer require laravel/ui:^2.4 --with-all-dependencies
+    php artisan ui vue --auth
+    npm install
+    npm run watch
+
+
+4. migrasi database
+    
+    php artisan migrate
+    
+    // rollback last migration
+    php artisan migrate:rollback
+    
+    // migrate fresh
+    php artisan migrate:fresh
+
+5. Membuat Model, Collection, Controller, Migration
+    
+    // buat model database
+    php artisan make:model NamaModel
+
+    // buat controller buat tampil data
+    php artisan make:controller NamaController
+
+    // buat migration
+    php artisan make:migration NamaMigration
+
+
+6. isi web 
+
+    Header:
+        Logo
+        Navigasi menu (link ke halaman-halaman penting)
+        Pencarian
+
+    Konten Utama:
+        Teks (artikel, deskripsi produk, dll.)
+        Gambar atau video
+        Tautan ke konten terkait
+    Sidebar (jika ada):
+        Widget atau link tambahan (kategori, arsip, atau iklan)
+        Formulir pendaftaran newsletter
+    Footer:
+        Informasi kontak
+        Tautan kebijakan privasi dan syarat layanan
+        Tautan ke halaman media sosial
+        Peta situs
+    Halaman Tentang:
+        Informasi tentang organisasi atau individu
+        Misi dan visi
+    Halaman Kontak:
+        Formulir untuk menghubungi pemilik situs
+        Alamat fisik dan nomor telepon
+    Blog atau Berita:
+        Artikel terbaru atau postingan
+        Kategori atau tag untuk navigasi
+    Halaman Layanan atau Produk:
+        Deskripsi layanan atau produk yang ditawarkan
+        Tautan untuk membeli atau mendaftar
+    Testimoni atau Ulasan:
+        Ulasan dari pengguna atau pelanggan
+    Fitur Responsif:
+        Desain yang menyesuaikan dengan ukuran layar perangkat yang berbeda.
+
+
+7.  blade template
+
+    -@extends('layouts.app')
+
+    - @yield('container')
+
+    - @section('container')
+      <h1>Selamat Datang</h1>
+      @endsection
+
+    - @include('Header.home')
+
+    -@dd($data)
+
+    -@foreach ($data as $key => $value)
+        -@dd($key)
+        -@dd($value)
+    -@endforeach
+
+8. extansen vscode
+
+    PHP Intelephense
+    Laravel Artisan
+    Laravel Snippets 
+    Laravel Blade Snippets 
+    Laravel Blade Spacer
+    Laravel GoTo View
+
+9.
+   
+

@@ -26,3 +26,17 @@ Route::get('/home', 'HomeController@index')->name('home');
 // route index baru
 
 Route::get('/test', 'TestController@index')->name('test.index');    
+
+// Route untuk Admin
+Route::group(['middleware' => ['auth', 'admin']], function () {
+    Route::get('/admin/dashboard', [AuthController::class, 'adminDashboard'])->name('admin.dashboard');
+});
+
+// Route untuk User Biasa
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/user/dashboard', [AuthController::class, 'userDashboard'])->name('user.dashboard');
+});
+
+// Route untuk login
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+});
