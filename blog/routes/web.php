@@ -126,9 +126,41 @@ Route::delete('/test/{id}', function ($id) use ($data) {
 
 Route::get('/testmiddleware', function () { 
     return "Berhasil masuk";
-})->middleware('CekMembership');
+})->middleware(['cek_ip', 'CekMembership']);
 
 
 Route::get('/gagal', function () {
     return view('gagal');
+});
+
+
+// Penggunaan middleware untuk mengatur Group
+
+Route::middleware(['CekMembership', 'cek_ip'])->group(function () {
+  
+    Route::get('/secure-area', function () {
+        $data = [
+            'item1' => 'Value 1',
+            'item2' => 'Value 2',
+            'item3' => 'Value 3',
+        ];
+
+        return view('secure.secure', [
+            'message' => 'Anda berada di area yang aman!',
+            'data' => $data,
+        ]);
+    });
+
+    Route::get('/another-secure-route', function () {
+        $data = [
+            'itemA' => 'Value A',
+            'itemB' => 'Value B',
+            'itemC' => 'Value C',
+        ];
+
+        return view('secure.secure', [
+            'message' => 'Ini adalah route aman lainnya!',
+            'data' => $data,
+        ]);
+    });
 });
