@@ -18,19 +18,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::get('/test', function () {
+//     return view('test');
+// });
+
 //test pengunaan get
 
-Route::get('/test', function () {
-    $data = [];
+$data = [];
 
-    for ($i = 1; $i <= 3; $i++) {
-        $data[] = [
-            'id' => $i,
-            'name' => "Name $i",
-            'email' => "email $i",
-            'address' => "address $i",
-        ];
-    }
+for ($i = 1; $i <= 3; $i++) {
+    $data[] = [
+        'id' => $i,
+        'name' => "Name $i",
+        'email' => "email $i",
+        'address' => "address $i",
+    ];
+}
+
+Route::get('/test', function () use ($data) {
+   
 
     echo '<pre>';
     var_dump($data);
@@ -41,6 +47,72 @@ Route::get('/test', function () {
 
 use Illuminate\Http\Request;
 
-Route::post('/test', function (Request $request) {
-    return $request->all();
+Route::post('/test', function (Request $request) use ($data) {
+    
+    // var_dump($data);
+    // var_dump($request->all());
+
+    $data[] = [
+        'id' => count($data) + 1,
+        'name' => $request->name,
+        'email' => $request->email,
+        'address' => $request->address,
+    ];
+
+    return $data;
+});
+
+//test put
+Route::put('/test', function (Request $request) use ($data) {
+  
+    // Update data
+    $data[0] = [
+        'name' => $request->name,
+        'email' => $request->email,
+        'address' => $request->address,
+    ];
+
+    return $data;
+});
+
+
+Route::put('/test/{id}', function (Request $request, $id) use ($data) {
+  
+    // Update data
+    $data[$id - 1] = [
+        'name' => $request->name,
+        'email' => $request->email,
+        'address' => $request->address,
+    ];
+
+    return $data;
+});
+
+
+//router - menggunakan method patch untuk ubah data
+Route::patch('/test/{id}', function (Request $request, $id) use ($data) {
+  
+    // Update data
+    $data[$id - 1] = [
+        'name' => $request->name,
+        'email' => $request->email,
+        'address' => $request->address,
+    ];
+
+    return $data;
+});
+
+//router - menggunakan method delete untuk hapus data
+Route::delete('/test/{id}', function ($id) use ($data) {
+    // Cek apakah ID valid
+    if ($id < 1 || $id > count($data)) {
+        return response()->json(['error' => 'Invalid ID'], 404);
+    }
+
+    // Hapus data
+    unset($data[$id - 1]);
+
+    //var_dump($data);
+
+    return response()->json(['message' => 'Data deleted successfully']);
 });

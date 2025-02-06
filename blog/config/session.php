@@ -154,6 +154,8 @@ return [
     */
 
     'domain' => env('SESSION_DOMAIN', null),
+    'secure' => env('SESSION_SECURE_COOKIE', null),
+    'http_only' => env('SESSION_HTTP_ONLY_COOKIE', true),
 
     /*
     |--------------------------------------------------------------------------
