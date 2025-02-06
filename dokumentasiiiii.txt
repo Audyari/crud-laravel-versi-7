@@ -104,6 +104,10 @@
     Laravel Blade Spacer
     Laravel GoTo View
 
-9.
+9. membuat middleware
+
+    php artisan make:middleware NamaMiddleware  
+
+    
    
 

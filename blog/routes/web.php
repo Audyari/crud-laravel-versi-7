@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\TestMiddleware;
 
 
 /*
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
 
 // Route::get('/test', function () {
 //     return view('test');
@@ -115,4 +118,17 @@ Route::delete('/test/{id}', function ($id) use ($data) {
     //var_dump($data);
 
     return response()->json(['message' => 'Data deleted successfully']);
+});
+
+
+//penggunaan midelware untuk mengatur akses
+
+
+Route::get('/testmiddleware', function () { 
+    return "Berhasil masuk";
+})->middleware('CekMembership');
+
+
+Route::get('/gagal', function () {
+    return view('gagal');
 });
